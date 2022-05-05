@@ -1,0 +1,64 @@
+{% include "base.html" %} 
+{% load costum_tags %} 
+{% include "sidebar.html" %}
+
+{% load static %}
+<div id="content">
+    <div id="main">
+        <div class="post-info">
+            
+            {% for track in track %}
+            <h3>♫ {{track.title}} </h3>
+            <hr>
+            <div class="post-pic"><img src="{{track.image.url}}"></div>
+            <div class="post_summary">{{track.summary}}</div>
+            <br>
+            <p>|♫♪♪♫♪♪♫♪♪♫♪♪|</p>
+            <div class="post-text">{{track.text |linebreaks}}</div>
+            <br>
+            <p>|♫♪♪♫♪♪♫♪♪♫♪♪|</p>
+            <div class="music-player">
+                <div class="btns">
+                    <span class="fas fa-backward"></span>
+                    <span class="fas fa-play"></span>
+                    <span class=" fas fa-forward"></span>
+                </div>
+                <div class="processing">
+                    <div class="processing-bar"></div>
+                </div>
+            </div>
+            <audio src="{{track.music.url}}" id="audio" type="audio/ogg">
+                    متاسفانه پخش آهنگ برای این مرورگر مقدور نیست
+            </audio>
+            <a href="{{track.music.url}} ">
+                <div class="download-box">{{track.summary}}</div>
+            </a>
+            <p>به این موسیقی چه امتیازی می دهید؟</p>
+            <div class="post_rating">
+                {{track.rate|render_rating|safe}}
+            </div>
+            <div class="comments">
+                <hr>
+                <h2>نظرات</h2>
+                <!--<button class="popup-btn btn">برای نظردهی کلیک کنید</button>-->
+                
+                <a class="btn btn-default" href="{% url 'add_comment' track.slug %}">برای نظردهی کلیک کنید</a><br>
+                {% for comment in track.comments.all %}
+                <span class="material-icons">person</span>
+                <strong> {{ comment.نام}}:</strong>
+                <div class="date">{{ comment.created_date }}</div>
+                <p>{{ comment.متن }}</p>
+                <hr><br> {% empty %}
+                <p>.هیچ نظری ثبت نشده است :(</p>
+                {% endfor %}
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+</div>
+
+
+{% include "musicsidebar.html" %}
+{% include "footer.html" %}
+
+<script src="{% static 'music-player.js' %}" defer></script>

@@ -1,0 +1,46 @@
+{% include "base.html" %}
+{% include "sidebar.html" %}
+{% load costum_tags %}
+
+<div id="content">
+    <div id="main">
+        <div class="post-info">
+            {% for music_video in music_video %}
+            <h3>♫ {{music_video.title}} </h3>
+            <hr>
+            <div class="post-pic">
+                <img src="{{music_video.image.url}}">
+            </div>
+            <div class="post_summary">{{music_video.summary}}</div>
+            <p>|♫♪♪♫♪♪♫♪♪♫♪♪|</p>
+            <div class="video">
+                <video width="70%" height="40%" controls>
+                    <source src="{{music_video.video.url}}" type="video/mp4">
+                    متاسفانه پخش ویدیو برای این مرورگر مقدور نیست
+                </video>
+            </div>
+            <a href="{{track.music.url}} ">
+                <div class="download-box">{{music_video.summary}}</div>
+            </a>
+            <p>به این موزیک ویدیو چه امتیازی می دهید؟</p>
+            <div class="post_rating">
+                {{music_video.rate|render_rating|safe}}
+            </div>
+            <div class="comment">
+                <hr>
+                <h2>نظرات</h2>
+                <a class="btn" href="{% url 'add_comment_video' music_video.slug %}">برای نظردهی کلیک کنید</a>
+                <br> {% for comment in music_video.clip_comments.all %}
+                <span class="material-icons">person</span>
+                <strong> {{ comment.نام}}:</strong>
+                <div class="date">{{ comment.created_date }}</div>
+                <p>{{ comment.متن }}</p>
+                <hr><br> {% empty %}
+                <p>.هیچ نظری ثبت نشده است :(</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>{% include "musicsidebar.html" %}
+{% include "footer.html" %}

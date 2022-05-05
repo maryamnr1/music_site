@@ -1,0 +1,11 @@
+<div id="list">
+    <div id="list_title">فهرست هنرمندان</div>
+    <div class="singers">
+        <ul>
+            {% for singer in singer %}
+            <li><a href="{% url 'singer_page' singer.slug %}" title="{{singer.name}} {{singer.family}}">{{singer.p_name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div> {% block sidebar %}
+{% endblock sidebar %}

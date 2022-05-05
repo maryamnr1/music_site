@@ -1,0 +1,83 @@
+{% include "base.html" %} {% load static %}
+<body>
+    <div class="main_image"><img src="{% static 'image1.jpg' %}" title="music"></div>
+    <div>
+        {% include "sidebar.html" %}
+        <div id="content">
+            <div id="suggest">
+                <div id="titleone">پیشنهاد ویژه</div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/30-salegi">
+                        <img src="{% static 'khajeamiri.jpg' %}">
+                        <div id="escription">دانلود آهنگ سی سالگی از احسان خواجه امیری</div>
+                    </a>
+                </div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/ghazi">
+                        <img src="{% static 'shadmehr-ghazi.png' %}">
+                        <div id="escription">دانلود آهنگ قاضی از شادمهر عقیلی</div>
+                    </a>
+                </div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/bi-to-budan">
+                        <img src="{% static 'Roozbeh-Bemani-Bi-To-Boodan-melotext.ir.jpg' %}">
+                        <div id="escription">دانلود آهنگ بی تو بودن از روزبه بمانی</div>
+                    </a>
+                </div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/shabe-royayi">
+                        <img src="{% static 'rth.jpg' %}">
+                        <div id="escription">دانلود آهنگ شب رویایی از آرون افشار</div>
+                    </a>
+                </div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/Atish">
+                        <img src="{% static 'Farzad-Farzin-.jpg' %}">
+                        <div id="escription">دانلود آهنگ آتیش از فرزاد فرزین</div>
+                    </a>
+                </div>
+                <div id="gallery">
+                    <a href="https://life-song.ir/beri-ke-barnagardi">
+                        <img src="{% static 'Evan-Band-Beri-Ke-Barnagardi.jpg' %}">
+                        <div id="escription">دانلود آهنگ بری که برنگردی از ایوان بند</div>
+                    </a>
+                </div>
+            </div>
+            <div id="main">
+                {% for track in tracks %}
+                <div class="post-info">
+                    <h3>♫ {{track.title}} </h3>
+                    <hr>
+                    <div class="post-pic "><img src="{{track.image.url}}"></div>
+                    <div class="post_summary">{{track.summary}}</div>
+                    <a href="{%url 'post' track.slug %}">
+                        <div class="btn">ادامه مطلب و دانلود</div>
+                    </a>
+                </div>
+                {% endfor %} {% for album in albums %}
+                <div class="post-info">
+                    <h3>♫ {{album.title}} </h3>
+                    <hr>
+                    <div class="post-pic "><img src="{{album.cover.url}}"></div>
+                    <div class="post_summary">{{album.summary}}</div>
+                    <a href="{%url 'album_post' album.slug %}">
+                        <div class="btn">ادامه مطلب و دانلود</div>
+                    </a>
+                </div>
+                {% endfor %} {% for music_video in music_video %}
+                <div class="post-info">
+                    <h3>♫ {{music_video.title}} </h3>
+                    <hr>
+                    <div class="post-pic "><img src="{{music_video.image.url}}"></div>
+                    <div class="post_summary">{{music_video.summary}}</div>
+                    <a href="{%url 'video_post' music_video.slug %}">
+                        <div class="btn">ادامه مطلب و دانلود</div>
+                    </a>
+                </div>
+                {% endfor %}{% include "pagination.html" with page=tracks %}
+            </div>
+        </div>
+        {% include "musicsidebar.html" %}
+    </div>
+    {% include "footer.html" %}
+   

@@ -1,0 +1,74 @@
+{% load static %} 
+{% include "base.html" %}
+{% include "sidebar.html" %}
+{% load costum_tags %}
+<div id="content">
+    <div id="main">
+        {% for album in album %}
+        <div class="post-info">
+            <h3>♫ {{album.title}} </h3><hr>
+            <div class="post-pic"><img src="{{album.cover.url}}"></div>
+            <div class="post_summary"> {{album.summary}} </div>
+            <div class="album_description">{{album.description}}</div>
+            <div class="album">
+                {%for track in album.album_track.all %}
+                <div class="album_row">
+                    <h4 class="album_track">{{track.title}}</h4>
+                    <span class="album_download fas fa-download">
+                            <a href="{{track.music.url}} ">
+                                دانلود 
+                            </a>
+                    </span>    
+                    <span class="fas fa-play album-play"> پخش </span>
+                        <audio src="{{track.music.url}}" id="audio">
+                                متاسفانه پخش آهنگ برای این مرورگر مقدور نیست
+                        </audio>
+                </div>
+
+                {% endfor %}
+            </div>
+            <p>|♫♪♪♫♪♪♫♪♪♫♪♪|</p>
+            <a href="{{album.music.url}} ">
+                <div class="download-box">دانلود آلبوم به صورت یکجا</div>
+            </a>
+            <p>به آلبوم چه امتیازی می دهید؟</p>
+            <div class="post_rating">
+                {{album.rate|render_rating|safe}}
+            </div>
+            <div class="comment">
+                <hr>
+                <h2>نظرات</h2>
+                <a class="btn" href="{% url 'add_comment_album' album.slug %}">برای نظردهی کلیک کنید</a>
+                 {% for comment in album.album_comments.all %}<br>
+                <span class="material-icons">person</span>
+                <strong> {{ comment.نام}}:</strong>
+                <div class="date">{{ comment.created_date }}</div>
+                <p>{{ comment.متن }}</p>
+                <hr><br> {% empty %}
+                <p>.هیچ نظری ثبت نشده است :(</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="album_music">
+        <span class="close-music fa-solid fa-xmark"></span>
+        <span class="music_name"></span>
+        <div class="music-player">
+                <div class="btns">
+                    <span class="fas fa-backward"></span>
+                    <span class="fas  track-play"></span>
+                    <span class=" fas fa-forward"></span>
+                </div>
+                <div class="processing">
+                    <div class="processing-bar"></div>
+                </div>
+        </div>
+        <audio scr="" ></audio>
+    
+       
+        </div>
+</div>{% include "musicsidebar.html" %}
+{% include "footer.html" %}
+
+<script src="{% static 'album.js' %}" defer></script>

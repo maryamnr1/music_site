@@ -1,0 +1,23 @@
+{% include "base.html" %} 
+{% include "sidebar.html" %}
+
+<div id="content">
+    <div id="main">
+        {% for album in album %}
+        <div class="post-info">
+            <h3>♫ {{album.title}} </h3>
+            <hr>
+            <div class="post-pic">
+                <img src="{{album.cover.url}}">
+            </div>
+            <div class="post_summary">{{album.summary}}</div>
+            <a href="{%url 'album_post' album.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+        {% include "pagination.html" with page=album %}
+    </div>
+</div>
+{% include "musicsidebar.html" %}
+{% include "footer.html" %}

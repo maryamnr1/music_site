@@ -1,0 +1,34 @@
+{% block content %}
+{% load static %}
+<link href="{% static 'project2.css' %}" rel="stylesheet" type="text/css">
+<div class="comment">
+    <form method="POST" class="comment-form" onsubmit="savecomment()">
+        {% if track %}
+        <h3>نظردهی<a class="cancle" href="{%url 'post' track.slug %}"></a></h3>
+        {% elif album %}
+            <h3>نظردهی <a href="{%url 'album_post' album.slug %}"></a></h3>
+        {% else %}
+            <h3>نظردهی <a href="{%url 'video_post' video.slug %}"></a></h3>
+        {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="btns">
+            <button type="submit" class="save btn"><b>ثبت</b></button>
+            {% if track %}
+                <a class="close" href="{%url 'post' track.slug %}">لغو</a>
+            {% elif album %}
+                <a class="close" href="{%url 'album_post' album.slug %}">لغو</a>
+            {% else %}
+                <a class="close" href="{%url 'video_post' video.slug %}">لغو</a>
+            {% endif %}    
+        </div>    
+    </form>
+    {% endblock %}
+</div>
+<script>
+    function savecomment(){
+        alert("نظرتان با موفقیت ثبت شد")
+        
+    }
+</script> 
+

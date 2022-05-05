@@ -1,0 +1,22 @@
+{% include "base.html" %} 
+{% include "sidebar.html" %}
+
+<div id="content">
+    <div id="main">
+
+        {% for video in video %}
+        <div class="post-info">
+            <h3>♫ {{video.title}} </h3>
+            <hr>
+            <div class="post-pic "><img src="{{video.image.url}}"></div>
+            <div class="post_summary">{{video.summary}}</div>
+            <a href="{%url 'video_post' video.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+        {% include "pagination.html" with page=video %}
+    </div>
+</div>
+{% include "musicsidebar.html" %}
+{% include "footer.html" %}

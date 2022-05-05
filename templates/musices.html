@@ -1,0 +1,23 @@
+{% include 'base.html' %}
+{% include 'sidebar.html' %}
+
+<div id="content">
+    <div id="main">
+        {% for track in track %}
+        <div class="post-info">
+            <h3>♫ {{track.title}} </h3>
+            <hr>
+            <div class="post-pic ">
+                <img src="{{track.image.url}}">
+            </div>
+            <div class="post_summary">{{track.summary}}</div>
+            <a href="{%url 'post' track.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+        {% include "pagination.html" with page=track %}
+    </div>
+</div>
+{% include 'musicsidebar.html' %}
+{% include "footer.html" %}

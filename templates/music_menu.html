@@ -1,0 +1,27 @@
+{% load static %} 
+{% include "base.html" %}
+{% include "sidebar.html" %}
+{% load costum_tags %}
+<div id="content">
+    <div id="main">
+        {% for track in tag.posts.all %}
+        <div class="post-info">
+            <h3>♫ {{track.title}} </h3>
+            <hr>
+            <div class="post-pic "><img src="{{track.image.url}}"></div>
+            <div class="post_summary">{{track.summary}}</div>
+            <a href="{%url 'post' track.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div id="music_list">
+    <ul>
+        {% for menu in menu %}
+        <li><a href="{% url 'category' menu.slug %}">{{menu.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,57 @@
+{% load static %}
+{% include "base.html" %}
+{% load costum_tags %}
+
+<div id="list">
+    <div id="list_title">فهرست هنرمندان</div>
+    <div class="singers">
+        <ul>
+            {% for person in person %}
+            <li><a href="{% url 'singer_page' person.slug %}" title="{{person.name}} {{person.family}}">{{person.p_name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div id="main">
+        <div class="singer_title"> دانلود همه آهنگ های {{singer.p_name}} </div>
+        
+        {% for track in singer.tracks.all %}
+        <div class="post-info">
+            <h3>♫ {{track.title}} </h3>
+            <hr>
+            <div class="post-pic"><img src="{{track.image.url}}"></div>
+            <div class="post_summary">{{track.summary}}</div>
+            <a href="{%url 'post' track.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+        
+        {% for album in singer.albums.all %}
+        <div class="post-info">
+            <h3>♫ {{album.title}} </h3>
+            <hr>
+            <div class="post-pic"><img src="{{album.cover.url}}"></div>
+            <div class="post_summary">{{album.summary}}</div>
+            <a href="{%url 'album_post' album.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+        
+        {% for video in singer.videos.all %}
+        <div class="post-info">
+            <h3>♫ {{video.title}} </h3>
+            <hr>
+            <div class="post-pic"><img src="{{video.image.url}}"></div>
+            <div class="post_summary">{{video.summary}}</div>
+            <a href="{%url 'video_post' video.slug %}">
+                <div class="btn">ادامه مطلب و دانلود</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include "musicsidebar.html" %}
+{% include "footer.html" %}
