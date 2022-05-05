@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    max-width: 1500px;
+    /*margin: auto;*/
+}
+
+html{
+    height:100%;
+}
+
+body {
+    background: #111;
+    direction: rtl;
+    font-family: BNazanin, vazir, tahoma;
+
+}
+
+
+@font-face {
+font-family: Vazir;
+src: url('fonts/Vazir.eot');
+src: url('fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+url('fonts/Vazir.woff') format('woff'),
+url('fonts/Vazir.ttf') format('truetype');
+font-weight: normal;
+}
+
+
+.comment{
+    border:1px solid gray ;
+    background-color:#fff;
+    margin:5% auto;
+    font-size:3vw;
+    width:70%;
+    display:flex;
+    justify-content:center;
+    flex-basis:80%;
+    text-align:center;
+    
+    
+
+}
+
+.comment-form{
+    width:100%;
+}
+
+.comment-form>p>input,.comment-form>p>textarea{
+    display:flex;
+    flex-direction:column;
+    width:80%;
+    padding:3%;
+    margin:1% 10%;
+    justify-content:center;
+}
+.comment-form>p>input:focus,.comment-form>p>textarea:focus{
+    border:5px solid blue;
+
+}
+.comment-form>p>label{
+    display:none;
+}
+
+.btn,.close{
+    background-color: #4322c5;
+    color: rgb(235, 213, 235);
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2vw;
+    border-radius: 12%;
+    margin: 1%;
+    cursor:pointer;
+}
+
+.cancle::after{
+    content:"\00D7";
+    float:right;
+    margin:1%;
+    font-size:2vw;
+    
+}
+
+a:active{
+    color:blue;
+}
+
+
+
+.btns{
+    display:flex;
+    justify-content:center;
+}
+
+@media only screen and (max-width:960px) {
+    .comment{
+        width:100%;
+
+    }
+    .comment-form{
+        width:100%;
+    }    
+    
+}
